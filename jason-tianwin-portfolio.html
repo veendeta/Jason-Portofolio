@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jason Tianwin | Business Analyst & Project Manager</title>
+    <meta name="description" content="Portfolio of Jason Tianwin - Business Analyst, IT Business Analyst, and Project Management professional.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* CSS Variables - Premium Light SaaS Theme */
+        :root {
+            --bg-base: #FFFFFF;
+            --bg-surface: #F8FAFC; /* Subtle off-white for depth */
+            --text-primary: #0F172A; /* Slate 900 for high contrast readability */
+            --text-secondary: #475569; /* Slate 600 for supporting text */
+            --accent: #004AAD;
+            --accent-hover: #003680;
+            --accent-light: rgba(0, 74, 173, 0.08);
+            --border: #E2E8F0;
+            --glass-bg: rgba(255, 255, 255, 0.85);
+            --nav-glass-bg: rgba(255, 255, 255, 0.62);
+            --radius-md: 8px;
+            --radius-lg: 16px;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.02);
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            --font-main: 'Inter', system-ui, -apple-system, sans-serif;
+        }
+
+        /* Resets & Base */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-base);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+        h1, h2, h3, h4 { font-weight: 600; line-height: 1.2; letter-spacing: -0.02em; color: var(--text-primary); }
+        a { color: inherit; text-decoration: none; transition: var(--transition); }
+        ul { list-style: none; }
+        button { cursor: pointer; border: none; font-family: inherit; transition: var(--transition); background: transparent; }
+        img { max-width: 100%; height: auto; display: block; }
+
+        /* Utility */
+        .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 2; }
+        .section-header { text-align: center; margin-bottom: 5rem; }
+        .section-title { font-size: 2.75rem; margin-bottom: 1rem; }
+        .section-subtitle { color: var(--text-secondary); font-size: 1.125rem; max-width: 600px; margin: 0 auto; }
+        section { padding: 8rem 0; position: relative; }
+        
+        /* Intro Splash Screen */
+        #splash-screen {
+            position: fixed; inset: 0; z-index: 3000;
+            background: var(--bg-base);
+            display: flex; align-items: center; justify-content: center;
+            transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.6s;
+        }
+        #splash-screen.splash-hide { opacity: 0; visibility: hidden; pointer-events: none; }
+        .splash-inner { display: flex; flex-direction: column; align-items: center; gap: 1rem; }
+        .splash-dot {
+            width: 10px; height: 10px; border-radius: 50%; background: var(--accent);
+            opacity: 0; animation: splashDotIn 0.5s ease forwards;
+        }
+        .splash-inner h1 {
+            font-size: clamp(2rem, 5vw, 3.25rem); font-weight: 600; letter-spacing: -0.02em;
+            color: var(--text-primary); opacity: 0; transform: translateY(14px);
+            animation: splashTextIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards;
+        }
+        .splash-comma { color: var(--accent); }
+        @keyframes splashDotIn { to { opacity: 1; } }
+        @keyframes splashTextIn { to { opacity: 1; transform: translateY(0); } }
+
+        /* Progress Indicator */
+        #scroll-progress {
+            position: fixed; top: 0; left: 0; height: 3px; background: var(--accent);
+            width: 0%; z-index: 1000; transition: width 0.1s ease;
+        }
+
+        /* Navigation - Glassmorphism */
+        nav {
+            position: fixed; top: 0; width: 100%; z-index: 900;
+            background: transparent; border-bottom: 1px solid transparent;
+            padding: 1.25rem 0; transition: var(--transition);
+        }
+        nav.scrolled {
+            background: var(--nav-glass-bg); backdrop-filter: blur(10px) saturate(140%); -webkit-backdrop-filter: blur(10px) saturate(140%);
+            border-bottom: 1px solid rgba(226, 232, 240, 0.6); box-shadow: 0 1px 24px rgba(15, 23, 42, 0.04); padding: 1rem 0;
+        }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.25rem; font-weight: 700; letter-spacing: -0.05em; color: var(--accent); }
+        .nav-links { display: flex; gap: 2.5rem; position: relative; }
+        .nav-links a { font-size: 0.9rem; font-weight: 500; color: var(--text-secondary); position: relative; padding: 0.25rem 0; }
+        .nav-links a:hover, .nav-links a.active { color: var(--accent); }
+        
+        /* Animated Nav Indicator */
+        .nav-indicator {
+            position: absolute; bottom: -4px; left: 0; height: 2px; background: var(--accent);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); border-radius: 2px; opacity: 0; pointer-events: none;
+        }
+
+        .hamburger { display: none; color: var(--text-primary); }
+        .hamburger svg { width: 24px; height: 24px; stroke: currentColor; }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center;
+            padding: 0.875rem 1.75rem; border-radius: 30px; font-size: 0.95rem; font-weight: 500;
+            letter-spacing: 0.01em; box-shadow: var(--shadow-sm);
+        }
+        .btn-primary { background: var(--accent); color: #FFFFFF; }
+        .btn-primary:hover { background: var(--accent-hover); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+        .btn-secondary { background: var(--bg-base); border: 1px solid var(--border); color: var(--text-primary); }
+        .btn-secondary:hover { background: var(--bg-surface); border-color: var(--text-secondary); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+
+        /* Hero Section */
+        #home {
+            min-height: 100vh; display: flex; align-items: center; justify-content: center;
+            padding-top: 80px; position: relative; overflow: hidden; background: var(--bg-surface);
+        }
+        .hero-content { display: flex; align-items: center; justify-content: center; gap: 3rem; max-width: 960px; text-align: left; }
+        .hero-text { max-width: 600px; }
+        .hero-headline { font-size: clamp(2.25rem, 4vw + 1rem, 4rem); margin-bottom: 1.5rem; letter-spacing: -0.03em; color: var(--text-primary); }
+        .hero-roles { font-size: 1.15rem; color: var(--accent); margin-bottom: 1.5rem; font-weight: 500; }
+        .hero-summary { font-size: 1.15rem; color: var(--text-secondary); margin-bottom: 2.5rem; max-width: 560px; line-height: 1.7; }
+        .hero-cta { display: flex; gap: 1rem; justify-content: flex-start; flex-wrap: wrap; }
+
+        /* Small circular profile photo in the hero, placed beside the text */
+        .hero-avatar {
+            width: 168px; height: 168px; border-radius: 50%; overflow: hidden; flex-shrink: 0;
+            border: 4px solid var(--bg-base); box-shadow: var(--shadow-md), 0 0 0 1px var(--border);
+            display: flex; align-items: center; justify-content: center;
+            background: linear-gradient(160deg, var(--accent) 0%, #00306e 100%);
+        }
+        .hero-avatar img { width: 100%; height: 100%; object-fit: cover; }
+        .hero-avatar span { font-size: 2.5rem; font-weight: 600; color: #fff; letter-spacing: 0.02em; }
+        
+        /* Subtle Background Gradient */
+        .bg-glow {
+            position: absolute; width: 80vw; height: 80vw; max-width: 800px; max-height: 800px;
+            background: radial-gradient(circle, var(--accent-light) 0%, rgba(255,255,255,0) 70%);
+            top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1; pointer-events: none;
+        }
+
+        /* About Section */
+        .about-grid { display: flex; flex-direction: column; align-items: center; text-align: center; max-width: 800px; margin: 0 auto; }
+        .about-card { background: var(--bg-base); padding: 3rem; border-radius: var(--radius-lg); border: 1px solid var(--border); box-shadow: var(--shadow-sm); transition: var(--transition); width: 100%; }
+        .about-card:hover { box-shadow: var(--shadow-md); border-color: rgba(0, 74, 173, 0.2); }
+        .about-card p { color: var(--text-secondary); font-size: 1.1rem; margin-bottom: 2.5rem; }
+        .tag-list { display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: center; }
+        .tag { background: var(--accent-light); color: var(--accent); border: 1px solid rgba(0, 74, 173, 0.1); padding: 0.5rem 1.25rem; border-radius: 30px; font-size: 0.9rem; font-weight: 500; transition: var(--transition); }
+        .tag:hover { background: var(--accent); color: #FFF; }
+
+        /* Skills Section */
+        .skills-filter { display: flex; justify-content: center; gap: 0.75rem; margin-bottom: 4rem; flex-wrap: wrap; position: relative; z-index: 10; }
+        .filter-btn { 
+            background: var(--bg-base); border: 1px solid var(--border); color: var(--text-secondary); 
+            padding: 0.6rem 1.25rem; border-radius: 30px; font-size: 0.9rem; font-weight: 500; 
+            transition: var(--transition); box-shadow: var(--shadow-sm); user-select: none;
+        }
+        .filter-btn:hover { border-color: var(--accent); color: var(--accent); }
+        .filter-btn.active { background: var(--text-primary); color: var(--bg-base); border-color: var(--text-primary); }
+        
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2rem; }
+        .skill-card { 
+            background: var(--bg-base); border: 1px solid var(--border); border-radius: var(--radius-lg); 
+            padding: 2rem; transition: var(--transition); box-shadow: var(--shadow-sm);
+            opacity: 1; transform: translateY(0);
+        }
+        .skill-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); border-color: var(--accent-light); }
+        .skill-card h4 { color: var(--accent); margin-bottom: 1.25rem; font-size: 1.25rem; }
+        .skill-card ul li { padding: 0.4rem 0; color: var(--text-secondary); border-bottom: 1px solid var(--bg-surface); }
+        .skill-card ul li:last-child { border-bottom: none; }
+        .skill-card ul li::before { content: '→'; color: var(--accent); margin-right: 8px; font-size: 0.8em; opacity: 0.5; }
+
+        /* Tools Panel (separate from Skills filter/grid) */
+        .tools-panel {
+            margin-top: 4rem; background: var(--bg-base); border: 1px solid var(--border);
+            border-radius: var(--radius-lg); padding: 2.5rem; box-shadow: var(--shadow-sm);
+        }
+        .tools-panel-head { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1.75rem; }
+        .tools-panel-head h3 { font-size: 1.3rem; }
+        .tools-count { font-size: 0.85rem; color: var(--text-secondary); }
+        .tools-list { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+        .tool-chip {
+            display: inline-flex; align-items: center; gap: 0.6rem; font-size: 0.9rem; font-weight: 500;
+            padding: 0.65rem 1.1rem; border-radius: var(--radius-md); border: 1px solid var(--border);
+            background: var(--bg-surface); transition: var(--transition);
+        }
+        .tool-chip:hover { border-color: var(--accent); background: var(--accent-light); color: var(--accent); }
+        .tool-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+
+        /* Projects Section */
+        #projects { background: var(--bg-surface); }
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); gap: 2.5rem; }
+        .project-card { 
+            background: var(--bg-base); border: 1px solid var(--border); border-radius: var(--radius-lg); 
+            overflow: hidden; cursor: pointer; transition: var(--transition); box-shadow: var(--shadow-sm);
+            display: flex; flex-direction: column;
+        }
+        .project-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); border-color: var(--accent-light); }
+        .project-img-container { width: 100%; height: 240px; overflow: hidden; background: var(--border); }
+        .project-img-container img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+        .project-card:hover .project-img-container img { transform: scale(1.05); }
+        .project-info { padding: 2rem; flex-grow: 1; display: flex; flex-direction: column; }
+        .project-category { font-size: 0.8rem; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.75rem; }
+        .project-title { font-size: 1.4rem; margin-bottom: 1rem; }
+        .project-desc { color: var(--text-secondary); font-size: 1rem; margin-bottom: 2rem; line-height: 1.6; flex-grow: 1; }
+        .view-btn { 
+            color: var(--text-primary); font-size: 0.95rem; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem;
+            transition: var(--transition); width: fit-content;
+        }
+        .project-card:hover .view-btn { color: var(--accent); gap: 0.75rem; }
+
+        .more-projects { text-align: center; margin-top: 6rem; padding: 4rem 2rem; background: var(--bg-base); border-radius: var(--radius-lg); border: 1px dashed var(--border); }
+
+        /* Modal - Light SaaS Theme */
+        .modal {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(15, 23, 42, 0.4); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+            z-index: 1000; opacity: 0; pointer-events: none; transition: opacity 0.4s ease;
+            display: flex; align-items: center; justify-content: center; padding: 1.5rem;
+        }
+        .modal.active { opacity: 1; pointer-events: auto; }
+        .modal-content {
+            background: var(--bg-base); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg);
+            width: 100%; max-width: 900px; max-height: 90vh; overflow-y: auto;
+            position: relative; transform: translateY(30px) scale(0.98); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .modal.active .modal-content { transform: translateY(0) scale(1); }
+        .modal-close { 
+            position: absolute; top: 1.5rem; right: 1.5rem; background: var(--bg-base); border: 1px solid var(--border);
+            border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; 
+            color: var(--text-primary); z-index: 10; box-shadow: var(--shadow-sm); transition: var(--transition);
+        }
+        .modal-close:hover { background: var(--bg-surface); color: var(--accent); transform: rotate(90deg); }
+        
+        .slider-container { position: relative; height: 450px; background: var(--bg-surface); border-bottom: 1px solid var(--border); }
+        .slider-img { width: 100%; height: 100%; object-fit: cover; opacity: 0; position: absolute; transition: opacity 0.5s ease; }
+        .slider-img.active { opacity: 1; z-index: 2; }
+        .slider-btn { 
+            position: absolute; top: 50%; transform: translateY(-50%); background: var(--glass-bg); backdrop-filter: blur(4px);
+            color: var(--text-primary); border: 1px solid var(--border); width: 44px; height: 44px; border-radius: 50%; 
+            display: flex; align-items: center; justify-content: center; z-index: 5; box-shadow: var(--shadow-md);
+        }
+        .slider-btn:hover { background: var(--bg-base); color: var(--accent); }
+        .slider-prev { left: 1.5rem; }
+        .slider-next { right: 1.5rem; }
+        
+        .modal-body { padding: 3rem; }
+        .modal-section { margin-bottom: 2.5rem; }
+        .modal-section h4 { font-size: 1.15rem; margin-bottom: 1rem; color: var(--text-primary); }
+        .modal-section p, .modal-section li { color: var(--text-secondary); font-size: 1rem; margin-bottom: 0.5rem; line-height: 1.7; }
+        .modal-section ul { padding-left: 1.5rem; list-style-type: none; }
+        .modal-section ul li { position: relative; }
+        .modal-section ul li::before { content: '•'; color: var(--accent); position: absolute; left: -1.25rem; font-size: 1.2rem; line-height: 1.4; }
+
+        /* Contact Section (Centered Links) */
+        .contact-wrapper { display: flex; flex-direction: column; align-items: center; text-align: center; max-width: 600px; margin: 0 auto; }
+        .contact-links { display: flex; flex-direction: column; gap: 1rem; width: 100%; margin-top: 2rem; }
+        .contact-item { 
+            display: flex; align-items: center; justify-content: center; gap: 1rem; color: var(--text-primary);
+            padding: 1.25rem; border: 1px solid var(--border); border-radius: var(--radius-md); font-weight: 500;
+            background: var(--bg-base); transition: var(--transition); box-shadow: var(--shadow-sm);
+        }
+        .contact-item:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-3px); box-shadow: var(--shadow-md); }
+        .contact-item svg { width: 20px; height: 20px; stroke: currentColor; }
+
+        /* Footer */
+        footer { padding: 3rem 0; text-align: center; border-top: 1px solid var(--border); color: var(--text-secondary); font-size: 0.95rem; background: var(--bg-surface); }
+        .footer-links { display: flex; justify-content: center; gap: 2rem; margin-top: 1.5rem; }
+        .footer-links a:hover { color: var(--accent); }
+
+        /* Back to top */
+        #back-to-top {
+            position: fixed; bottom: 2rem; right: 2rem; width: 48px; height: 48px;
+            background: var(--bg-base); border: 1px solid var(--border); border-radius: 50%;
+            color: var(--text-primary); z-index: 99; display: flex; align-items: center; justify-content: center;
+            opacity: 0; pointer-events: none; transition: var(--transition); box-shadow: var(--shadow-md);
+        }
+        #back-to-top.visible { opacity: 1; pointer-events: auto; transform: translateY(0); }
+        #back-to-top:hover { background: var(--accent); color: #FFF; border-color: var(--accent); }
+
+        /* Animations */
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .stagger-1 { transition-delay: 0.1s; }
+        .stagger-2 { transition-delay: 0.2s; }
+        .stagger-3 { transition-delay: 0.3s; }
+
+        /* Fade-out animation for filtering */
+        .fade-out { opacity: 0; transform: scale(0.95); pointer-events: none; position: absolute; }
+        .fade-in { opacity: 1; transform: scale(1); transition: all 0.4s ease; }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .projects-grid { grid-template-columns: 1fr; }
+            .skill-card { padding: 1.5rem; }
+            .hero-content { flex-direction: column; text-align: center; }
+            .hero-text { max-width: 100%; }
+            .hero-summary { margin-left: auto; margin-right: auto; }
+            .hero-cta { justify-content: center; }
+            .hero-avatar { width: 128px; height: 128px; }
+        }
+        @media (max-width: 768px) {
+            .nav-indicator { display: none; }
+            .nav-links {
+                position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: var(--glass-bg);
+                backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); flex-direction: column; 
+                align-items: center; justify-content: center; gap: 2.5rem; transform: translateY(-100%); 
+                transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); z-index: -1;
+            }
+            .nav-links.active { transform: translateY(0); }
+            .nav-links a { font-size: 1.25rem; }
+            .hamburger { display: block; z-index: 100; position: relative; }
+            section { padding: 6rem 0; }
+            .hero-headline { font-size: 2.5rem; }
+            .slider-container { height: 250px; }
+            .modal-body { padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="splash-screen">
+        <div class="splash-inner">
+            <span class="splash-dot"></span>
+            <h1>Hello there<span class="splash-comma">.</span></h1>
+        </div>
+    </div>
+
+    <div id="scroll-progress"></div>
+
+    <nav id="navbar">
+        <div class="container nav-container">
+            <a href="#home" class="logo">JT.</a>
+            <div class="nav-links" id="nav-links-container">
+                <div class="nav-indicator"></div>
+                <a href="#home" class="active">Home</a>
+                <a href="#about">About</a>
+                <a href="#skills">Skills & Tools</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <button class="hamburger" aria-label="Menu" id="mobile-menu-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+            </button>
+        </div>
+    </nav>
+
+    <main id="app-root"></main>
+
+    <footer id="footer-container"></footer>
+
+    <button id="back-to-top" aria-label="Back to top">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+    </button>
+
+    <div id="project-modal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" aria-label="Close modal">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+            </button>
+            <div class="slider-container" id="modal-slider">
+                </div>
+            <div class="modal-body" id="modal-body-content">
+                </div>
+        </div>
+    </div>
+
+    <script>
+        /** * INTRO SPLASH SCREEN — shows briefly, then reveals the site */
+        (function () {
+            const splash = document.getElementById('splash-screen');
+            document.body.style.overflow = 'hidden';
+            setTimeout(() => {
+                splash.classList.add('splash-hide');
+                document.body.style.overflow = '';
+                setTimeout(() => splash.remove(), 650);
+            }, 1100);
+        })();
+
+        /** * DATA ARCHITECTURE */
+        const profile = {
+            fullName: "Jason Tianwin",
+            headline: "Business Analyst | IT Business Analyst | Project Management | Data Analytics",
+            summary: "Transforming business needs into structured solutions through analysis, technology, and continuous improvement.",
+            photo: "profile-porto.JPG", // Put a URL to your photo here (e.g. "https://yourdomain.com/photo.jpg"). Leave empty to show initials.
+            resumeLink: "https://drive.google.com/drive/folders/1Q-omUH7OH84qjkKa2QfExOhLA-b3a-j8?usp=drive_link",
+            linktreeLink: "https://linktr.ee/jasontianwin"
+        };
+
+        const about = {
+            summaryText: "I am a driven professional specializing in bridging the gap between business objectives and technology solutions. By leveraging analytical frameworks, agile project management methodologies, and data-driven insights, I ensure structured execution and sustainable outcomes for cross-functional teams.",
+            interests: ["Business Analysis", "IT Business Analysis", "Project Management", "Data Analytics", "Digital Transformation", "Process Optimization", "Requirements Engineering"]
+        };
+
+        const skills = {
+            "Business Analysis": ["Requirement Gathering", "Stakeholder Management", "Process Mapping", "User Stories", "Gap Analysis"],
+            "Project Management": ["Agile", "Scrum", "Sprint Planning", "Risk Management"],
+            "Data Analytics": ["Excel", "Power BI", "Tableau", "SQL"],
+            "Technical": ["HTML", "CSS", "JavaScript", "Git"]
+        };
+
+        // Tools live separately from the skills categories/filters above —
+        // rendered as their own panel beneath the Skills grid.
+        const tools = ["Jira", "Confluence", "Figma", "Notion", "Power BI", "Tableau"];
+
+        const projects = [
+            {
+                id: "p1",
+                title: "Enterprise ERP Implementation",
+                category: "IT Projects",
+                thumbnail: "https://placehold.co/800x600/F8FAFC/004AAD?text=ERP+System",
+                shortDesc: "Led the requirements elicitation for a large-scale enterprise resource planning system, bridging technical and business teams.",
+                problem: "Legacy systems caused data silos and delayed financial reporting by an average of 14 days.",
+                objective: "Implement a unified ERP to centralize data and reduce reporting latency.",
+                approach: "Conducted gap analysis, formulated process maps, and managed stakeholder expectations across 5 departments.",
+                solution: "Designed comprehensive user stories and acceptance criteria for a customized SAP module implementation.",
+                deliverables: ["Business Requirements Document (BRD)", "Process Workflows", "User Stories"],
+                results: "Reduced financial reporting time by 75% and eliminated duplicate data entry workflows.",
+                lessons: "Crucial importance of continuous stakeholder alignment during iterative software rollouts.",
+                tools: ["Jira", "Confluence", "Figma", "Excel"],
+                images: [
+                    "https://placehold.co/1000x500/0F172A/FFFFFF?text=Architecture+Map",
+                    "https://placehold.co/1000x500/0F172A/FFFFFF?text=Sprint+Board",
+                    "https://placehold.co/1000x500/0F172A/FFFFFF?text=Final+UI"
+                ]
+            },
+            {
+                id: "p2",
+                title: "Sales Data Dashboard Strategy",
+                category: "Data Analytics",
+                thumbnail: "https://placehold.co/800x600/F8FAFC/004AAD?text=BI+Dashboard",
+                shortDesc: "Developed interactive business intelligence dashboards for executive leadership to monitor regional KPIs.",
+                problem: "Executives lacked real-time visibility into regional sales performance, relying on static month-end reports.",
+                objective: "Establish automated reporting pipelines connected to live CRM data.",
+                approach: "Extracted data via SQL, transformed using Power Query, and built interactive visualizations.",
+                solution: "Deployed a Power BI dashboard with dynamic drill-down capabilities.",
+                deliverables: ["Data Dictionary", "Power BI Dashboard", "Automated SQL Pipeline"],
+                results: "Saved 20 hours per month in manual reporting. Increased actionable insights for Q3 planning.",
+                lessons: "Data cleaning often consumes 80% of the project lifecycle; prioritizing architecture is vital.",
+                tools: ["SQL", "Power BI", "Excel"],
+                images: [
+                    "https://placehold.co/1000x500/0F172A/FFFFFF?text=Dashboard+Overview",
+                    "https://placehold.co/1000x500/0F172A/FFFFFF?text=Data+Schema",
+                    "https://placehold.co/1000x500/0F172A/FFFFFF?text=Drill-down+Metrics"
+                ]
+            },
+            {
+                id: "p3",
+                title: "Customer Onboarding Optimization",
+                category: "Business Analysis",
+                thumbnail: "mie_tjoe-drink.png",
+                shortDesc: "Streamlined the B2B customer onboarding process to reduce churn and improve time-to-value.",
+                problem: "High drop-off rates during the initial 30 days of client onboarding due to manual processes.",
+                objective: "Map the current state, identify bottlenecks, and propose an optimized future state.",
+                approach: "Held workshops with sales and CS teams. Created 'As-Is' and 'To-Be' process models.",
+                solution: "Introduced automated email triggers and simplified data collection forms.",
+                deliverables: ["Process Diagrams", "Gap Analysis Report", "Automation Strategy"],
+                results: "Reduced onboarding time from 14 to 5 days. Improved client retention by 15%.",
+                lessons: "Technical solutions must be paired with user-centered design to be effective.",
+                tools: ["Notion", "Figma", "Jira"],
+                images: [
+                    "https://placehold.co/1000x500/0F172A/FFFFFF?text=As-Is+State",
+                    "https://placehold.co/1000x500/0F172A/FFFFFF?text=To-Be+State",
+                    "https://placehold.co/1000x500/0F172A/FFFFFF?text=KPI+Tracking"
+                ]
+            }
+        ];
+
+        const socialLinks = {
+            email: "jasonjafian@gmail.com",
+            linkedin: "https://www.linkedin.com/in/jason-tianwin/",
+            github: "https://github.com/veendeta",
+            linktree: profile.linktreeLink
+        };
+
+        /** * RENDERING ENGINE */
+        const appRoot = document.getElementById('app-root');
+
+        function getInitials(name) {
+            return name.split(' ').filter(Boolean).slice(0, 2).map(w => w[0]).join('').toUpperCase();
+        }
+
+        function renderHero() {
+            const avatarHTML = profile.photo
+                ? `<img src="${profile.photo}" alt="${profile.fullName}">`
+                : `<span>${getInitials(profile.fullName)}</span>`;
+            return `
+                <header id="home">
+                    <div class="bg-glow"></div>
+                    <div class="container hero-content reveal">
+                        <div class="hero-avatar">${avatarHTML}</div>
+                        <div class="hero-text">
+                            <h1 class="hero-headline">${profile.fullName}</h1>
+                            <p class="hero-roles">${profile.headline.split('|').map(s => s.trim()).join(' <span style="color:var(--border)">|</span> ')}</p>
+                            <p class="hero-summary">${profile.summary}</p>
+                            <div class="hero-cta">
+                                <a href="${profile.resumeLink}" target="_blank" class="btn btn-primary">Download Resume</a>
+                                <a href="#projects" class="btn btn-secondary">View Projects</a>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+            `;
+        }
+
+        function renderAbout() {
+            const interestsHTML = about.interests.map(i => `<span class="tag">${i}</span>`).join('');
+            return `
+                <section id="about">
+                    <div class="container reveal">
+                        <div class="section-header">
+                            <h2 class="section-title">Professional Profile</h2>
+                            <p class="section-subtitle">Bridging the gap between strategy and execution.</p>
+                        </div>
+                        <div class="about-grid">
+                            <div class="about-card">
+                                <p>${about.summaryText}</p>
+                                <h3 style="margin-bottom: 1.5rem; font-size: 1.25rem;">Core Focus Areas</h3>
+                                <div class="tag-list">${interestsHTML}</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            `;
+        }
+
+        function renderSkills() {
+            const categories = Object.keys(skills);
+            // Create safe ID strings for filtering (e.g., "Business Analysis" -> "business-analysis")
+            const safeId = (str) => str.toLowerCase().replace(/[^a-z0-9]/g, '-');
+            
+            const filtersHTML = categories.map(cat => 
+                `<button class="filter-btn" data-filter="${safeId(cat)}">${cat}</button>`
+            ).join('');
+            
+            let gridHTML = '';
+            categories.forEach((cat, index) => {
+                const list = skills[cat].map(s => `<li>${s}</li>`).join('');
+                const staggerClass = `stagger-${(index % 3) + 1}`;
+                gridHTML += `
+                    <div class="skill-card reveal ${staggerClass} skill-item" data-category="${safeId(cat)}">
+                        <h4>${cat}</h4>
+                        <ul>${list}</ul>
+                    </div>
+                `;
+            });
+
+            const toolsChipsHTML = tools.map(t => `<span class="tool-chip"><span class="tool-dot"></span>${t}</span>`).join('');
+
+            return `
+                <section id="skills" style="background: var(--bg-surface);">
+                    <div class="container">
+                        <div class="section-header reveal">
+                            <h2 class="section-title">Skills & Tools</h2>
+                            <p class="section-subtitle">Technical proficiencies and methodological frameworks.</p>
+                        </div>
+                        <div class="skills-filter reveal stagger-1">
+                            <button class="filter-btn active" data-filter="all">All</button>
+                            ${filtersHTML}
+                        </div>
+                        <div class="skills-grid" id="skills-grid-container">
+                            ${gridHTML}
+                        </div>
+
+                        <div class="tools-panel reveal">
+                            <div class="tools-panel-head">
+                                <h3>Tools</h3>
+                                <span class="tools-count">${tools.length} platforms</span>
+                            </div>
+                            <div class="tools-list">${toolsChipsHTML}</div>
+                        </div>
+                    </div>
+                </section>
+            `;
+        }
+
+        function renderProjects() {
+            const filters = ["All", "Business Analysis", "IT Projects", "Data Analytics", "More Projects"];
+            const safeId = (str) => str.toLowerCase().replace(/[^a-z0-9]/g, '-');
+            
+            const filtersHTML = filters.map(f => 
+                `<button class="filter-btn ${f==='All'?'active':''}" data-pfilter="${f==='All' ? 'all' : safeId(f)}">${f}</button>`
+            ).join('');
+
+            const cardsHTML = projects.map((p, index) => {
+                const staggerClass = `stagger-${(index % 3) + 1}`;
+                return `
+                <div class="project-card reveal ${staggerClass} project-item" data-pcategory="${safeId(p.category)}" onclick="openModal('${p.id}')">
+                    <div class="project-img-container">
+                        <img src="${p.thumbnail}" alt="${p.title}" loading="lazy">
+                    </div>
+                    <div class="project-info">
+                        <span class="project-category">${p.category}</span>
+                        <h3 class="project-title">${p.title}</h3>
+                        <p class="project-desc">${p.shortDesc}</p>
+                        <span class="view-btn">
+                            Read Case Study 
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        </span>
+                    </div>
+                </div>
+            `}).join('');
+
+            return `
+                <section id="projects">
+                    <div class="container">
+                        <div class="section-header reveal">
+                            <h2 class="section-title">Case Studies</h2>
+                            <p class="section-subtitle">A selection of recent projects highlighting problem-solving and execution.</p>
+                        </div>
+                        <div class="skills-filter reveal stagger-1">
+                            ${filtersHTML}
+                        </div>
+                        <div class="projects-grid" id="project-grid-container">
+                            ${cardsHTML}
+                        </div>
+                        
+                        <div class="more-projects reveal">
+                            <h3 style="font-size: 1.75rem; margin-bottom: 1rem;">Looking for more?</h3>
+                            <p style="color: var(--text-secondary); margin-bottom: 2rem; font-size: 1.1rem;">Explore additional documentation and references via Linktree.</p>
+                            <a href="${profile.linktreeLink}" target="_blank" class="btn btn-primary">Access Linktree</a>
+                        </div>
+                    </div>
+                </section>
+            `;
+        }
+
+        function renderContact() {
+            const svgMail = `<svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>`;
+            const svgLinkedIn = `<svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>`;
+            const svgGitHub = `<svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>`;
+            const svgLinktree = `<svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M5 10l7-7 7 7M5 16l7-7 7 7"/></svg>`;
+
+            return `
+                <section id="contact">
+                    <div class="container reveal">
+                        <div class="section-header">
+                            <h2 class="section-title">Get In Touch</h2>
+                            <p class="section-subtitle">Interested in collaborating or discussing an opportunity? Connect with me via the channels below.</p>
+                        </div>
+                        <div class="contact-wrapper">
+                            <div class="contact-links">
+                                <a href="mailto:${socialLinks.email}" class="contact-item">${svgMail} ${socialLinks.email}</a>
+                                <a href="${socialLinks.linkedin}" target="_blank" class="contact-item">${svgLinkedIn} LinkedIn Profile</a>
+                                <a href="${socialLinks.github}" target="_blank" class="contact-item">${svgGitHub} GitHub Repositories</a>
+                                <a href="${socialLinks.linktree}" target="_blank" class="contact-item">${svgLinktree} Linktree Access</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            `;
+        }
+
+        function renderFooter() {
+            const year = new Date().getFullYear();
+            return `
+                <div class="container">
+                    <p>&copy; ${year} ${profile.fullName}. All rights reserved.</p>
+                    <div class="footer-links">
+                        <a href="${socialLinks.linkedin}" target="_blank">LinkedIn</a>
+                        <a href="${socialLinks.github}" target="_blank">GitHub</a>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Initialize Application
+        appRoot.innerHTML = renderHero() + renderAbout() + renderSkills() + renderProjects() + renderContact();
+        document.getElementById('footer-container').innerHTML = renderFooter();
+
+        /** * INTERACTION LOGIC */
+
+        // 1. Navigation & Scroll Effects
+        const navbar = document.getElementById('navbar');
+        const progressBar = document.getElementById('scroll-progress');
+        const backToTop = document.getElementById('back-to-top');
+        const sections = document.querySelectorAll('section, header');
+        const navLinks = document.querySelectorAll('.nav-links a');
+        const navIndicator = document.querySelector('.nav-indicator');
+
+        function updateNavIndicator(activeLink) {
+            if(!activeLink || window.innerWidth < 768) return;
+            const linkRect = activeLink.getBoundingClientRect();
+            const containerRect = activeLink.parentElement.getBoundingClientRect();
+            navIndicator.style.width = `${linkRect.width}px`;
+            navIndicator.style.transform = `translateX(${linkRect.left - containerRect.left}px)`;
+            navIndicator.style.opacity = '1';
+        }
+
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            progressBar.style.width = (winScroll / height) * 100 + "%";
+
+            if (winScroll > 50) navbar.classList.add('scrolled');
+            else navbar.classList.remove('scrolled');
+
+            if (winScroll > 600) backToTop.classList.add('visible');
+            else backToTop.classList.remove('visible');
+
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(a => {
+                a.classList.remove('active');
+                if (a.getAttribute('href') === `#${current}`) {
+                    a.classList.add('active');
+                    updateNavIndicator(a);
+                }
+            });
+        });
+
+        // Initialize Indicator
+        setTimeout(() => updateNavIndicator(document.querySelector('.nav-links a.active')), 100);
+        window.addEventListener('resize', () => updateNavIndicator(document.querySelector('.nav-links a.active')));
+
+        // Mobile Menu
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const navLinksContainer = document.getElementById('nav-links-container');
+        mobileBtn.addEventListener('click', () => navLinksContainer.classList.toggle('active'));
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                navLinksContainer.classList.remove('active');
+                const targetId = link.getAttribute('href').substring(1);
+                const targetEl = document.getElementById(targetId);
+                if(targetEl) window.scrollTo({ top: targetEl.offsetTop - 80, behavior: 'smooth' });
+            });
+        });
+
+        backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+        // 2. Scroll Reveal Animations
+        const observerOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target); // Run once
+                }
+            });
+        }, observerOptions);
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // 3. Filtering Logic (Skills & Projects)
+        function setupFiltering(btnSelector, itemSelector, dataAttrBtn, dataAttrItem) {
+            const btns = document.querySelectorAll(btnSelector);
+            const items = document.querySelectorAll(itemSelector);
+            
+            btns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Update active button
+                    btns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    
+                    const filterValue = btn.getAttribute(dataAttrBtn);
+                    
+                    items.forEach(item => {
+                        const itemCategory = item.getAttribute(dataAttrItem);
+                        if (filterValue === 'all' || itemCategory === filterValue) {
+                            item.style.display = 'block';
+                            setTimeout(() => { item.style.opacity = '1'; item.style.transform = 'scale(1)'; }, 50);
+                        } else {
+                            item.style.opacity = '0';
+                            item.style.transform = 'scale(0.95)';
+                            setTimeout(() => { item.style.display = 'none'; }, 400); // match CSS transition
+                        }
+                    });
+                });
+            });
+        }
+
+        // Initialize exact selectors for filtering
+        setupFiltering('.skills-filter .filter-btn[data-filter]', '.skill-item', 'data-filter', 'data-category');
+        setupFiltering('.skills-filter .filter-btn[data-pfilter]', '.project-item', 'data-pfilter', 'data-pcategory');
+
+        // 4. Modal & Slider Logic
+        const modal = document.getElementById('project-modal');
+        const modalSlider = document.getElementById('modal-slider');
+        const modalBody = document.getElementById('modal-body-content');
+        let currentSlideIndex = 0;
+
+        window.openModal = function(projectId) {
+            const proj = projects.find(p => p.id === projectId);
+            if(!proj) return;
+
+            currentSlideIndex = 0;
+            const imagesHTML = proj.images.map((src, i) => `<img src="${src}" class="slider-img ${i===0?'active':''}" alt="Gallery ${i}">`).join('');
+            const prevBtn = `<button class="slider-btn slider-prev" onclick="changeSlide(-1)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>`;
+            const nextBtn = `<button class="slider-btn slider-next" onclick="changeSlide(1)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></button>`;
+            
+            modalSlider.innerHTML = imagesHTML + prevBtn + nextBtn;
+
+            const toolsHTML = proj.tools.map(t => `<span class="tag">${t}</span>`).join('');
+            const listHTML = (arr) => arr.map(i => `<li>${i}</li>`).join('');
+
+            modalBody.innerHTML = `
+                <span class="project-category" style="color:var(--accent); font-weight:600; font-size:0.9rem; text-transform:uppercase; letter-spacing:0.05em;">${proj.category}</span>
+                <h2 style="font-size: 2.25rem; margin: 0.5rem 0 2.5rem 0;">${proj.title}</h2>
+                
+                <div class="modal-section">
+                    <h4>Executive Summary</h4>
+                    <p><strong style="color:var(--text-primary)">Problem:</strong> ${proj.problem}</p>
+                    <p><strong style="color:var(--text-primary)">Objective:</strong> ${proj.objective}</p>
+                </div>
+                
+                <div class="modal-section">
+                    <h4>Analysis & Execution</h4>
+                    <p><strong style="color:var(--text-primary)">Approach:</strong> ${proj.approach}</p>
+                    <p><strong style="color:var(--text-primary)">Solution:</strong> ${proj.solution}</p>
+                </div>
+
+                <div class="modal-section">
+                    <h4>Key Deliverables</h4>
+                    <ul>${listHTML(proj.deliverables)}</ul>
+                </div>
+
+                <div class="modal-section">
+                    <h4>Results & Impact</h4>
+                    <p>${proj.results}</p>
+                </div>
+
+                <div class="modal-section">
+                    <h4>Tools Used</h4>
+                    <div class="tag-list" style="margin-top:1rem; justify-content:flex-start;">${toolsHTML}</div>
+                </div>
+            `;
+
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        };
+
+        window.changeSlide = function(direction) {
+            const imgs = modalSlider.querySelectorAll('.slider-img');
+            if(imgs.length === 0) return;
+            imgs[currentSlideIndex].classList.remove('active');
+            currentSlideIndex = (currentSlideIndex + direction + imgs.length) % imgs.length;
+            imgs[currentSlideIndex].classList.add('active');
+        };
+
+        // Close Modal Events
+        document.querySelector('.modal-close').addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => { if(e.target === modal) closeModal(); });
+        document.addEventListener('keydown', (e) => { if(e.key === 'Escape' && modal.classList.contains('active')) closeModal(); });
+
+        function closeModal() {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+    </script>
+</body>
+</html>
