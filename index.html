@@ -822,12 +822,12 @@
             const toolsHTML = proj.tools.map(t => `<span class="tag">${t}</span>`).join('');
             const listHTML = (arr) => arr.map(i => `<li>${i}</li>`).join('');
             const linksHTML = proj.links && proj.links.length > 0 
-                ? `<div class="modal-section">
-                    <h4>Project Links</h4>
-                    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-                        ${proj.links.map(l => `<a href="${l.url}" target="_blank" class="btn btn-secondary">${l.label}</a>`).join('')}
-                    </div>
-                   </div>` 
+      		  ? `<div class="modal-section">
+            		<h4>Project Links</h4>
+            		<div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px;">
+             		   ${proj.links.map(l => `<a href="${l.url}" target="_blank" class="btn btn-secondary">${l.label}</a>`).join('')}
+           		 	</div>
+         		</div>`
                 : '';
             
             modalBody.innerHTML = `
